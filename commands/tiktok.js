@@ -54,7 +54,7 @@ async function tiktokCommand(sock, chatId, message) {
         }
 
         await sock.sendMessage(chatId, {
-            react: { text: '🔄', key: message.key }
+            react: { text: '🔎', key: message.key }
         });
 
         try {
@@ -63,14 +63,14 @@ async function tiktokCommand(sock, chatId, message) {
             
             // If that fails, try with the API
             if (!downloadData || !downloadData.data || downloadData.data.length === 0) {
-                const apiResponse = await axios.get(`https://api.dreaded.site/api/tiktok?url=${encodeURIComponent(url)}`);
+                const apiResponse = await axios.get(`https://api.lolhuman.xyz/api/tiktok?apikey=YOUR_API_KEY&url=VIDEO_URL=${encodeURIComponent(url)}`);
                 if (apiResponse.data && apiResponse.data.status === 200 && apiResponse.data.tiktok) {
                     const videoUrl = apiResponse.data.tiktok.video;
                     if (videoUrl) {
                         await sock.sendMessage(chatId, {
                             video: { url: videoUrl },
                             mimetype: "video/mp4",
-                            caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗞𝗡𝗜𝗚𝗛𝗧-𝗕𝗢𝗧"
+                            caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 RED_DRAGAN_𝗕𝗢𝗧"
                         }, { quoted: message });
                         return;
                     }
@@ -96,12 +96,12 @@ async function tiktokCommand(sock, chatId, message) {
                     await sock.sendMessage(chatId, {
                         video: { url: mediaUrl },
                         mimetype: "video/mp4",
-                        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗞𝗡𝗜𝗚𝗛𝗧-𝗕𝗢𝗧"
+                        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 RED_DRAGAN_𝗕𝗢𝗧"
                     }, { quoted: message });
                 } else {
                     await sock.sendMessage(chatId, {
                         image: { url: mediaUrl },
-                        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗞𝗡𝗜𝗚𝗛𝗧-𝗕𝗢𝗧"
+                        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 RED_DRAGAN_𝗕𝗢𝗧"
                     }, { quoted: message });
                 }
             }
