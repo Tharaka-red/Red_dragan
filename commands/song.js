@@ -17,7 +17,7 @@ async function songCommand(sock, chatId, message) {
         
         if (!searchQuery) {
             return await sock.sendMessage(chatId, { 
-                text: "What song do you want to download?"
+                text: "please send .play <song name> or .song <song name>"
             });
         }
 
@@ -48,7 +48,7 @@ async function songCommand(sock, chatId, message) {
 
         try {
             // Try siputzx API first
-            const siputzxRes = await fetch(`https://api.siputzx.my.id/api/d/ytmp3?url=${encodeURIComponent(videoUrl)}`);
+            const siputzxRes = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=YOUR_API_KEY&url=YOUTUBE_URL=${encodeURIComponent(videoUrl)}`);
             const siputzxData = await siputzxRes.json();
             
             if (siputzxData && siputzxData.data && siputzxData.data.dl) {
@@ -86,7 +86,7 @@ async function songCommand(sock, chatId, message) {
             console.error('Error with siputzx API:', e1);
             try {
                 // Try zenkey API as fallback
-                const zenkeyRes = await fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${encodeURIComponent(videoUrl)}`);
+                const zenkeyRes = await fetch(`https://api.lolhuman.xyz/api/ytaudio?apikey=YOUR_API_KEY&url=YOUTUBE_URL=${encodeURIComponent(videoUrl)}`);
                 const zenkeyData = await zenkeyRes.json();
                 
                 if (zenkeyData && zenkeyData.result && zenkeyData.result.downloadUrl) {
@@ -167,7 +167,7 @@ async function songCommand(sock, chatId, message) {
     } catch (error) {
         console.error('Error in song command:', error);
         await sock.sendMessage(chatId, { 
-            text: "Failed to download the song. Please try again later or try a different song."
+            text: "Failed to download the song."
         });
     }
 }
